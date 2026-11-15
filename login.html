@@ -6,57 +6,134 @@
 <title>Вход | ROBRUN STORE</title>
 
 <style>
-
 body{
-    margin:0;
-    background:#0b0f16;
-    font-family:Arial,sans-serif;
-    color:white;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    min-height:100vh;
+margin:0;
+font-family:Arial,sans-serif;
+background:#0b0f16;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
 
 .card{
-    width:400px;
-
-    background:#161b22;
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:20px;
-
-    padding:35px;
+width:400px;
+background:#161b22;
+padding:30px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.1);
 }
 
 h1{
-    text-align:center;
-    color:#ff9d00;
-    margin-bottom:25px;
+text-align:center;
+color:#ff9d00;
 }
 
 input{
-    width:100%;
-    padding:15px;
-
-    background:#0d1117;
-    color:white;
-
-    border:none;
-    border-radius:12px;
-
-    margin-bottom:15px;
-
-    box-sizing:border-box;
+width:100%;
+padding:15px;
+margin-bottom:15px;
+background:#0d1117;
+border:none;
+border-radius:12px;
+color:white;
+box-sizing:border-box;
 }
 
 button{
-    width:100%;
+width:100%;
+padding:15px;
+background:linear-gradient(135deg,#ff6b00,#ffb300);
+border:none;
+border-radius:12px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
 
-    padding:15px;
+a{
+color:#ff9d00;
+text-decoration:none;
+}
 
-    border:none;
-    border-radius:
+.links{
+margin-top:15px;
+text-align:center;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+<h1>Вход</h1>
+
+<input
+id="email"
+type="email"
+placeholder="Email">
+
+<input
+id="password"
+type="password"
+placeholder="Пароль">
+
+<button id="loginBtn">
+Войти
+</button>
+
+<div class="links">
+<a href="register.html">
+Создать аккаунт
+</a>
+</div>
+
+</div>
+
+<script type="module">
+
+import {
+auth,
+signInWithEmailAndPassword
+} from "./firebase.js";
+
+document
+.getElementById("loginBtn")
+.addEventListener("click", async ()=>{
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+alert("Вход выполнен");
+
+window.location.href =
+"account.html";
+
+}
+catch(error){
+
+alert(
+error.code + "\n" +
+error.message
+);
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
