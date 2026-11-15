@@ -663,13 +663,16 @@ footer{
     .title{
         font-size:42px;
     }
+}
+
     .hidden{
     opacity:0;
     transform:translateY(30px);
     transition:.7s;
 }
 
-.show{
+.show
+{
     opacity:1;
     transform:translateY(0);
 }
