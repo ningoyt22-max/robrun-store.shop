@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Личный кабинет | ROBRUN STORE</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,7 +18,7 @@ font-family:'Inter',sans-serif;
 }
 
 body{
-background:#0a0f18;
+background:#080d14;
 color:white;
 min-height:100vh;
 overflow-x:hidden;
@@ -27,63 +28,99 @@ body::before{
 content:"";
 position:fixed;
 inset:0;
+
 background-image:
 linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
 linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+
 background-size:50px 50px;
+
 z-index:-2;
 }
 
 body::after{
 content:"";
 position:fixed;
+
 width:700px;
 height:700px;
-right:-200px;
-top:-200px;
-background:radial-gradient(circle,#ff7b0030,transparent 70%);
+
+right:-150px;
+top:-150px;
+
+background:
+radial-gradient(
+circle,
+rgba(255,120,0,.25),
+transparent 70%
+);
+
 z-index:-1;
 }
 
 .header{
+
 height:80px;
-background:#111722;
-border-bottom:1px solid rgba(255,255,255,.08);
+
+padding:0 40px;
 
 display:flex;
 justify-content:space-between;
 align-items:center;
 
-padding:0 40px;
+background:#111722;
+
+border-bottom:
+1px solid rgba(255,255,255,.08);
+
 }
 
 .logo{
-color:#ff9d00;
-font-size:30px;
+
+font-size:32px;
 font-weight:900;
+
+color:#ff9800;
+
 }
 
-.nav{
+.menu{
 display:flex;
 gap:25px;
 }
 
-.nav a{
+.menu a{
+
 color:white;
 text-decoration:none;
+
+transition:.3s;
+
+}
+
+.menu a:hover{
+color:#ff9800;
 }
 
 .container{
+
 max-width:1300px;
+
 margin:auto;
+
 padding:40px 20px;
+
 }
 
 .profile{
-background:rgba(255,255,255,.05);
+
+background:
+rgba(255,255,255,.04);
+
 backdrop-filter:blur(20px);
 
-border:1px solid rgba(255,255,255,.08);
+border:
+1px solid rgba(255,255,255,.08);
 
 border-radius:25px;
 
@@ -94,26 +131,7 @@ justify-content:space-between;
 align-items:center;
 
 margin-bottom:30px;
-}
 
-.avatar{
-width:80px;
-height:80px;
-
-border-radius:50%;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-font-size:32px;
-font-weight:800;
-
-background:linear-gradient(
-135deg,
-#ff6b00,
-#ffb300
-);
 }
 
 .user{
@@ -122,42 +140,91 @@ align-items:center;
 gap:20px;
 }
 
+.avatar{
+
+width:90px;
+height:90px;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:38px;
+font-weight:900;
+
+background:
+linear-gradient(
+135deg,
+#ff6b00,
+#ffb300
+);
+
+}
+
+.email{
+color:#ffb300;
+margin-top:5px;
+}
+
 .cards{
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+
 gap:20px;
+
 }
 
 .card{
-background:rgba(255,255,255,.05);
 
-border:1px solid rgba(255,255,255,.08);
+background:
+rgba(255,255,255,.04);
+
+border:
+1px solid rgba(255,255,255,.08);
 
 border-radius:25px;
 
 padding:25px;
 
 transition:.3s;
+
 }
 
 .card:hover{
-transform:translateY(-5px);
+
+transform:
+translateY(-5px);
+
+box-shadow:
+0 15px 40px rgba(255,120,0,.15);
+
 }
 
 .card h3{
-color:#ff9d00;
+
+color:#ff9800;
+
 margin-bottom:15px;
+
 }
 
 .balance{
-font-size:48px;
+
+font-size:52px;
 font-weight:900;
+
 }
 
 .btn{
+
 display:inline-block;
 
-padding:14px 24px;
+padding:14px 25px;
 
 border:none;
 border-radius:15px;
@@ -175,51 +242,286 @@ linear-gradient(
 #ff6b00,
 #ffb300
 );
+
+transition:.3s;
+
+}
+
+.btn:hover{
+
+transform:
+translateY(-2px);
+
 }
 
 .orders{
-margin-top:30px;
+
+margin-top:35px;
+
 }
 
 .order{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
+
+margin-top:15px;
 
 padding:20px;
 
+background:
+rgba(255,255,255,.04);
+
+border:
+1px solid rgba(255,255,255,.08);
+
 border-radius:20px;
 
-margin-top:15px;
-}
-
-.email{
-color:#ffb300;
 }
 
 .logout{
+
 margin-top:30px;
+
 }
 
 @media(max-width:900px){
 
-.profile{
+.header{
+
 flex-direction:column;
-gap:20px;
-text-align:center;
+
+height:auto;
+
+padding:20px;
+
+gap:15px;
+
 }
 
-.header{
+.profile{
+
 flex-direction:column;
-height:auto;
-padding:20px;
-gap:15px;
+
+text-align:center;
+
+gap:20px;
+
+}
+
+.menu{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
 }
 
 }
 
 </style>
 </head>
-
 <body>
 
-<header class="
+<header class="header">
+
+<div class="logo">
+ROBRUN STORE
+</div>
+
+<nav class="menu">
+
+<a href="index.html">
+Главная
+</a>
+
+<a href="shop.html">
+Магазин
+</a>
+
+<a href="reviews.html">
+Отзывы
+</a>
+
+<a href="faq.html">
+FAQ
+</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="profile">
+
+<div class="user">
+
+<div class="avatar">
+R
+</div>
+
+<div>
+
+<h2>
+Личный кабинет
+</h2>
+
+<p
+id="email"
+class="email">
+
+Загрузка...
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>
+Баланс
+</h3>
+
+<div class="balance">
+0 ₽
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>
+Покупка валюты
+</h3>
+
+<p>
+Перейти в магазин RobRun.
+</p>
+
+<br>
+
+<a
+href="shop.html"
+class="btn">
+
+Купить валюту
+
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Статус аккаунта
+</h3>
+
+<p>
+✅ Авторизован
+</p>
+
+<p>
+✅ Firebase подключен
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Преимущества
+</h3>
+
+<p>
+🎁 Бонусы до 25%
+</p>
+
+<p>
+⚡ Быстрая выдача
+</p>
+
+<p>
+🛡 Безопасно
+</p>
+
+</div>
+
+</div>
+
+<div class="orders">
+
+<h2>
+Последние заказы
+</h2>
+
+<div class="order">
+
+Заказов пока нет
+
+</div>
+
+</div>
+
+<div class="logout">
+
+<button
+id="logout"
+class="btn">
+
+Выйти
+
+</button>
+
+</div>
+
+</div>
+
+<script type="module">
+
+import {
+auth,
+onAuthStateChanged,
+signOut
+}
+from "./firebase.js";
+
+const emailElement =
+document.getElementById("email");
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+
+emailElement.textContent =
+user.email;
+
+}else{
+
+location.href =
+"login.html";
+
+}
+
+});
+
+document
+.getElementById("logout")
+.addEventListener(
+"click",
+async()=>{
+
+await signOut(auth);
+
+location.href =
+"index.html";
+
+});
+
+</script>
+
+</body>
+</html>
