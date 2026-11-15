@@ -393,12 +393,8 @@ value="100000">
 
 </div>
 
-<button
-class="buy-btn"
-onclick="location.href='login.html'">
-
+<button id="buyBtn" class="buy-btn">
 КУПИТЬ СЕЙЧАС
-
 </button>
 
 </div>
@@ -431,50 +427,133 @@ onclick="location.href='login.html'">
 
 </div>
 
-<script>
+<script type="module">
 
-const slider=document.getElementById("slider");
+import {
+auth,
+db,
+doc,
+getDoc,
+updateDoc,
+onAuthStateChanged
+}
+from "./firebase.js";
+
+const slider = document.getElementById("slider");
+
+let currentUser = null;
 
 function updateCalc(){
 
-let amount=parseInt(slider.value);
+let amount = parseInt(slider.value);
 
-let price=(amount/100000)*70;
+let price = (amount / 100000) * 70;
 
-let bonusPercent=0;
+let bonusPercent = 0;
 
-if(amount>=10000000){
-bonusPercent=25;
+if(amount >= 10000000){
+bonusPercent = 25;
 }
-else if(amount>=5000000){
-bonusPercent=20;
+else if(amount >= 5000000){
+bonusPercent = 20;
 }
-else if(amount>=1000000){
-bonusPercent=15;
+else if(amount >= 1000000){
+bonusPercent = 15;
 }
 
-let bonus=Math.floor(amount*(bonusPercent/100));
+let bonus =
+Math.floor(amount * bonusPercent / 100);
 
-document.getElementById("amount").innerText=
+document.getElementById("amount").textContent =
 amount.toLocaleString("ru-RU");
 
-document.getElementById("price").innerText=
-price.toLocaleString("ru-RU")+" ₽";
+document.getElementById("price").textContent =
+price.toLocaleString("ru-RU") + " ₽";
 
-document.getElementById("bonusPercent").innerText=
-bonusPercent+"%";
+document.getElementById("bonusPercent").textContent =
+bonusPercent + "%";
 
-document.getElementById("bonus").innerText=
+document.getElementById("bonus").textContent =
 bonus.toLocaleString("ru-RU");
 
-document.getElementById("total").innerText=
-(amount+bonus).toLocaleString("ru-RU");
+document.getElementById("total").textContent =
+(amount + bonus).toLocaleString("ru-RU");
 
 }
 
-slider.addEventListener("input",updateCalc);
+slider.addEventListener("input", updateCalc);
 
 updateCalc();
+
+onAuthStateChanged(auth,(user)=>{
+currentUser = user;
+});
+
+document
+.getElementById("buyBtn")
+.addEventListener("click", async ()=>{
+
+if(!currentUser){
+
+alert("Сначала войдите в аккаунт");
+
+location.href="login.html";
+
+return;
+
+}
+
+const amount =
+parseInt(slider.value);
+
+const price =
+(amount / 100000) * 70;
+
+const userRef =
+doc(db,"users",currentUser.uid);
+
+const userSnap =
+await getDoc(userRef);
+
+if(!userSnap.exists()){
+
+alert("Пользователь не найден");
+
+return;
+
+}
+
+const balance =
+userSnap.data().balance;
+
+if(balance < price){
+
+alert(
+"Недостаточно средств!\n\n" +
+"Баланс: " + balance + " ₽\n" +
+"Стоимость: " + price + " ₽"
+);
+
+return;
+
+}
+
+const newBalance =
+balance - price;
+
+await updateDoc(userRef,{
+balance:newBalance
+});
+
+alert(
+"✅ Покупка успешна!\n\n" +
+"Списано: " + price + " ₽\n" +
+"Новый баланс: " + newBalance + " ₽"
+);
+
+location.href="account.html";
+
+});
 
 </script>
 
