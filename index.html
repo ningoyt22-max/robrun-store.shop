@@ -1,170 +1,286 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROBRUN STORE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>ROBRUN STORE</title>
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
+    <link rel="stylesheet" href="style.css">
+</head>
 
-body{
-background:#05070c;
-color:#fff;
-overflow-x:hidden;
-}
+<body>
 
-body::before{
-content:"";
-position:fixed;
-inset:0;
-background-image:
-linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-background-size:60px 60px;
-z-index:-2;
-}
+    <!-- HEADER -->
+    <header>
 
-body::after{
-content:"";
-position:fixed;
-width:800px;
-height:800px;
-left:-200px;
-top:-200px;
-background:radial-gradient(circle,#3d5afe30,transparent 70%);
-z-index:-1;
-}
+        <div class="logo">
+            ROBRUN STORE
+        </div>
 
-.container{
-width:90%;
-max-width:1280px;
-margin:auto;
-}
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="shop.html">Купить валюту</a>
+            <a href="reviews.html">Отзывы</a>
+            <a href="faq.html">FAQ</a>
+            <a href="login.html">Войти</a>
+        </nav>
 
-header{
-height:90px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+        <a href="https://t.me/yourtelegram" class="telegram">
+            Telegram
+        </a>
 
-.logo{
-font-size:30px;
-font-weight:800;
-}
+    </header>
 
-.logo span{
-color:#4e7dff;
-}
+    <!-- HERO -->
+    <section class="hero">
 
-nav{
-display:flex;
-gap:35px;
-}
+        <div class="hero-left">
 
-nav a{
-color:#a7a7a7;
-text-decoration:none;
-transition:.3s;
-}
+            <div class="badge">
+                ⚡ Валюта в наличии 24/7
+            </div>
 
-nav a:hover{
-color:#fff;
-}
+            <h1>
+                Покупка валюты
+                <span>RobRun</span>
+            </h1>
 
-.telegram{
-padding:14px 25px;
-border-radius:40px;
-border:1px solid rgba(255,255,255,.15);
-background:rgba(255,255,255,.03);
-color:#fff;
-text-decoration:none;
-}
+            <p>
+                Безопасно. Быстро. С бонусами до 25%.
+            </p>
 
-.hero{
-padding:100px 0;
-display:grid;
-grid-template-columns:1fr 500px;
-gap:60px;
-align-items:center;
-}
+            <div class="hero-buttons">
 
-.badge{
-display:inline-block;
-padding:12px 18px;
-border-radius:50px;
-background:rgba(255,255,255,.03);
-border:1px solid rgba(255,255,255,.08);
-margin-bottom:25px;
-color:#59ff95;
-}
+                <a href="shop.html" class="btn-main">
+                    Купить валюту
+                </a>
 
-.hero h1{
-font-size:80px;
-line-height:1;
-margin-bottom:25px;
-}
+                <a href="account.html" class="btn-second">
+                    Личный кабинет
+                </a>
 
-.hero p{
-font-size:22px;
-color:#959595;
-margin-bottom:30px;
-}
+            </div>
 
-.buttons{
-display:flex;
-gap:15px;
-}
+        </div>
 
-.btn{
-padding:17px 32px;
-border-radius:40px;
-text-decoration:none;
-font-weight:700;
-}
+        <div class="hero-right">
 
-.btn-main{
-background:white;
-color:black;
-}
+            <div class="glass-card">
 
-.btn-second{
-background:rgba(255,255,255,.03);
-border:1px solid rgba(255,255,255,.08);
-color:white;
-}
+                <h3>Информация</h3>
 
-.stats{
-display:flex;
-gap:60px;
-margin-top:70px;
-}
+                <div class="info">
+                    <span>Статус</span>
+                    <b class="green">В наличии</b>
+                </div>
 
-.stat h2{
-font-size:42px;
-}
+                <div class="info">
+                    <span>Бонус</span>
+                    <b>до 25%</b>
+                </div>
 
-.stat p{
-color:#707070;
-}
+                <div class="info">
+                    <span>Выдача</span>
+                    <b>до 10 минут</b>
+                </div>
 
-.info-card{
-background:rgba(255,255,255,.04);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,.08);
-border-radius:30px;
-padding:30px;
-}
+                <div class="info">
+                    <span>Поддержка</span>
+                    <b>24/7</b>
+                </div>
 
-.row{
-display:flex;
-justify-content
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- СТАТИСТИКА -->
+    <section class="section">
+
+        <h2 class="title">Статистика</h2>
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <h2>1500+</h2>
+                <p>Успешных сделок</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>4.9★</h2>
+                <p>Рейтинг</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>24/7</h2>
+                <p>Поддержка</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- КАЛЬКУЛЯТОР -->
+    <section class="section">
+
+        <h2 class="title">Калькулятор валюты</h2>
+
+        <div class="calc">
+
+            <div id="amount" class="amount">
+                100 000
+            </div>
+
+            <input
+                type="range"
+                id="slider"
+                min="100000"
+                max="10000000"
+                step="100000"
+                value="100000">
+
+            <div class="results">
+
+                <div class="item">
+                    <h3>Стоимость</h3>
+                    <p id="price">70 ₽</p>
+                </div>
+
+                <div class="item">
+                    <h3>Бонус</h3>
+                    <p id="bonus">0</p>
+                </div>
+
+                <div class="item">
+                    <h3>Получите</h3>
+                    <p id="total">100000</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ПРЕИМУЩЕСТВА -->
+    <section class="section">
+
+        <h2 class="title">Почему выбирают нас</h2>
+
+        <div class="features">
+
+            <div class="feature">
+                <span>⚡</span>
+                <h3>Быстрая выдача</h3>
+                <p>Передача валюты в течение нескольких минут.</p>
+            </div>
+
+            <div class="feature">
+                <span>🛡</span>
+                <h3>Безопасно</h3>
+                <p>Безопасные способы передачи валюты.</p>
+            </div>
+
+            <div class="feature">
+                <span>🎁</span>
+                <h3>Бонусы</h3>
+                <p>До 25% дополнительной валюты.</p>
+            </div>
+
+            <div class="feature">
+                <span>💬</span>
+                <h3>Поддержка</h3>
+                <p>Всегда на связи.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section class="section">
+
+        <h2 class="title">Отзывы</h2>
+
+        <div class="reviews">
+
+            <div class="review">
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    Получил валюту за 5 минут.
+                </p>
+            </div>
+
+            <div class="review">
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    Всё быстро и безопасно.
+                </p>
+            </div>
+
+            <div class="review">
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    Лучший магазин RobRun.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+
+        <h2 class="title">FAQ</h2>
+
+        <div class="faq-item">
+            <h3>Как быстро приходит валюта?</h3>
+            <p>Обычно от 5 до 15 минут.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Есть ли бонусы?</h3>
+            <p>Да, до 25% в зависимости от суммы заказа.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Как связаться с поддержкой?</h3>
+            <p>Через Telegram.</p>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <h3>ROBRUN STORE</h3>
+
+        <p>
+            Продажа игровой валюты RobRun
+        </p>
+
+        <br>
+
+        <a href="shop.html">
+            Купить валюту
+        </a>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
