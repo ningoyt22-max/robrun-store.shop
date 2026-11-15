@@ -452,17 +452,25 @@ let price = (amount / 100000) * 70;
 let bonusPercent = 0;
 
 if(amount >= 10000000){
+
 bonusPercent = 25;
+
 }
 else if(amount >= 5000000){
+
 bonusPercent = 20;
+
 }
 else if(amount >= 1000000){
+
 bonusPercent = 15;
+
 }
 
 let bonus =
-Math.floor(amount * bonusPercent / 100);
+Math.floor(
+amount * (bonusPercent / 100)
+);
 
 document.getElementById("amount").textContent =
 amount.toLocaleString("ru-RU");
@@ -486,7 +494,9 @@ slider.addEventListener("input", updateCalc);
 updateCalc();
 
 onAuthStateChanged(auth,(user)=>{
+
 currentUser = user;
+
 });
 
 document
@@ -497,7 +507,7 @@ if(!currentUser){
 
 alert("Сначала войдите в аккаунт");
 
-location.href="login.html";
+location.href = "login.html";
 
 return;
 
@@ -530,8 +540,12 @@ if(balance < price){
 
 alert(
 "Недостаточно средств!\n\n" +
-"Баланс: " + balance + " ₽\n" +
-"Стоимость: " + price + " ₽"
+"Баланс: " +
+balance +
+" ₽\n" +
+"Стоимость: " +
+price +
+" ₽"
 );
 
 return;
@@ -541,17 +555,24 @@ return;
 const newBalance =
 balance - price;
 
-await updateDoc(userRef,{
+await updateDoc(
+userRef,
+{
 balance:newBalance
-});
+}
+);
 
 alert(
 "✅ Покупка успешна!\n\n" +
-"Списано: " + price + " ₽\n" +
-"Новый баланс: " + newBalance + " ₽"
+"Списано: " +
+price +
+" ₽\n" +
+"Новый баланс: " +
+newBalance +
+" ₽"
 );
 
-location.href="account.html";
+location.href = "account.html";
 
 });
 
