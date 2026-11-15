@@ -1,13 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Регистрация</title>
+</head>
+<body>
+
+<input id="email" type="email" placeholder="Email">
+
+<input id="password" type="password" placeholder="Пароль">
+
+<button id="registerBtn">
+Регистрация
+</button>
+
 <script type="module">
 
 import {
-auth,
-db,
-createUserWithEmailAndPassword,
-doc,
-setDoc
-}
-from "./firebase.js";
+  auth,
+  db,
+  createUserWithEmailAndPassword,
+  doc,
+  setDoc
+} from "./firebase.js";
 
 document
 .getElementById("registerBtn")
@@ -23,25 +39,22 @@ document.getElementById("password").value;
 
 const userCredential =
 await createUserWithEmailAndPassword(
-auth,
-email,
-password
+  auth,
+  email,
+  password
 );
 
-const user =
-userCredential.user;
-
 await setDoc(
-doc(db,"users",user.uid),
+doc(db,"users",userCredential.user.uid),
 {
-email:user.email,
-balance:0,
-orders:0,
-createdAt:Date.now()
+  email: email,
+  balance: 0,
+  orders: 0,
+  createdAt: Date.now()
 }
 );
 
-alert("Firestore OK");
+alert("Успешно зарегистрирован");
 
 }
 catch(error){
@@ -59,3 +72,6 @@ error.message
 });
 
 </script>
+
+</body>
+</html>
