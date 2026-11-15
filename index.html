@@ -2,28 +2,340 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ROBRUN STORE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-body{
-background:#0b0b0f;
-color:white;
-font-family:Arial,sans-serif;
-text-align:center;
-padding-top:100px;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Montserrat',sans-serif;
 }
-h1{
-color:gold;
-font-size:60px;
+
+body{
+background:#090909;
+color:white;
+}
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(0,0,0,.85);
+backdrop-filter:blur(10px);
+padding:20px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+}
+
+.logo{
+font-size:32px;
+font-weight:800;
+color:#ffbf00;
+text-shadow:0 0 15px #ff7300;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-weight:600;
+transition:.3s;
+}
+
+nav a:hover{
+color:#ff7300;
+}
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+background:
+linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)),
+radial-gradient(circle at center,#ff3b00 0%,transparent 50%);
+}
+
+.hero h1{
+font-size:80px;
+font-weight:800;
+color:white;
+text-shadow:
+0 0 15px red,
+0 0 25px orange;
+}
+
+.hero p{
+margin-top:20px;
+font-size:22px;
+color:#ddd;
+}
+
+.btn{
+margin-top:30px;
+padding:15px 35px;
+border:none;
+border-radius:15px;
+background:linear-gradient(45deg,#ff2a00,#ffb700);
+color:white;
+font-weight:700;
+cursor:pointer;
+font-size:18px;
+box-shadow:0 0 25px #ff7300;
+}
+
+.section{
+padding:100px 30px;
+max-width:1200px;
+margin:auto;
+}
+
+.section h2{
+font-size:42px;
+margin-bottom:40px;
+text-align:center;
+color:#ffbf00;
+}
+
+.calculator{
+background:#141414;
+padding:40px;
+border-radius:20px;
+box-shadow:0 0 30px rgba(255,120,0,.2);
+}
+
+.valueDisplay{
+font-size:42px;
+font-weight:800;
+text-align:center;
+margin-bottom:20px;
+}
+
+input[type=range]{
+width:100%;
+accent-color:#ff7300;
+}
+
+.result{
+margin-top:30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.card{
+background:#1d1d1d;
+border:1px solid rgba(255,183,0,.3);
+padding:25px;
+border-radius:15px;
+text-align:center;
+}
+
+.card h3{
+color:#ffbf00;
+margin-bottom:10px;
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.feature{
+background:#141414;
+padding:30px;
+border-radius:15px;
+text-align:center;
+transition:.3s;
+}
+
+.feature:hover{
+transform:translateY(-5px);
+}
+
+.feature span{
+font-size:50px;
+}
+
+footer{
+background:#050505;
+padding:40px;
+text-align:center;
+color:#888;
 }
 </style>
 </head>
 <body>
 
+<header>
+
+<div class="logo">
+ROBRUN STORE
+</div>
+
+<nav>
+<a href="#">Главная</a>
+<a href="#">Купить валюту</a>
+<a href="#">Отзывы</a>
+<a href="#">FAQ</a>
+<a href="#">Войти</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
 <h1>ROBRUN STORE</h1>
 
-<p>Продажа игровой валюты RobRun</p>
+<p>
+Игровая валюта RobRun по выгодной цене
+</p>
 
-<a href="shop.html">Перейти в магазин</a>
+<button class="btn">
+КУПИТЬ СЕЙЧАС
+</button>
+
+</section>
+
+<section class="section">
+
+<h2>Калькулятор валюты</h2>
+
+<div class="calculator">
+
+<div class="valueDisplay" id="currencyValue">
+100000
+</div>
+
+<input
+type="range"
+min="100000"
+max="10000000"
+step="100000"
+value="100000"
+id="slider">
+
+<div class="result">
+
+<div class="card">
+<h3>Стоимость</h3>
+<p id="price">70 ₽</p>
+</div>
+
+<div class="card">
+<h3>Бонус</h3>
+<p id="bonus">0</p>
+</div>
+
+<div class="card">
+<h3>Получите</h3>
+<p id="total">100000</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>Наши преимущества</h2>
+
+<div class="features">
+
+<div class="feature">
+<span>⚡</span>
+<h3>Быстрая передача</h3>
+<p>Передача валюты в кратчайшие сроки.</p>
+</div>
+
+<div class="feature">
+<span>🛡</span>
+<h3>Безопасно</h3>
+<p>Защита аккаунтов и заказов.</p>
+</div>
+
+<div class="feature">
+<span>🎁</span>
+<h3>Бонусы</h3>
+<p>До 25% дополнительной валюты.</p>
+</div>
+
+<div class="feature">
+<span>💬</span>
+<h3>Поддержка</h3>
+<p>Помощь по заказам 24/7.</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 ROBRUN-STORE.SHOP
+
+</footer>
+
+<script>
+
+const slider = document.getElementById("slider");
+
+const currencyValue = document.getElementById("currencyValue");
+const price = document.getElementById("price");
+const bonus = document.getElementById("bonus");
+const total = document.getElementById("total");
+
+function updateCalc(){
+
+let amount = parseInt(slider.value);
+
+let cost = (amount / 100000) * 70;
+
+let bonusPercent = 0;
+
+if(amount >= 10000000){
+bonusPercent = 25;
+}
+else if(amount >= 5000000){
+bonusPercent = 20;
+}
+else if(amount >= 1000000){
+bonusPercent = 15;
+}
+
+let bonusAmount =
+Math.floor(amount * bonusPercent / 100);
+
+currencyValue.innerText =
+amount.toLocaleString("ru-RU");
+
+price.innerText =
+cost.toLocaleString("ru-RU") + " ₽";
+
+bonus.innerText =
+bonusAmount.toLocaleString("ru-RU");
+
+total.innerText =
+(amount + bonusAmount).toLocaleString("ru-RU");
+
+}
+
+slider.addEventListener("input", updateCalc);
+
+updateCalc();
+
+</script>
 
 </body>
 </html>

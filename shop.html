@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Магазин | ROBRUN STORE</title>
+
+<style>
+body{
+background:#0b0b0f;
+color:#fff;
+font-family:Arial,sans-serif;
+padding:40px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+.card{
+background:#14141c;
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(255,120,0,.2);
+}
+
+h1{
+text-align:center;
+color:#ffb700;
+}
+
+input[type=range]{
+width:100%;
+margin:25px 0;
+accent-color:#ff6a00;
+}
+
+.result{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-top:20px;
+}
+
+.box{
+background:#1f1f2a;
+padding:20px;
+border-radius:12px;
+text-align:center;
+}
+
+.buy{
+width:100%;
+padding:15px;
+margin-top:20px;
+background:linear-gradient(45deg,#ff2a00,#ffb700);
+border:none;
+border-radius:15px;
+cursor:pointer;
+font-size:18px;
+font-weight:bold;
+color:white;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Покупка валюты RobRun</h1>
+
+<div class="card">
+
+<h2 id="amount">100 000</h2>
+
+<input
+id="slider"
+type="range"
+min="100000"
+max="10000000"
+step="100000"
+value="100000">
+
+<div class="result">
+
+<div class="box">
+<h3>Стоимость</h3>
+<p id="price">70 ₽</p>
+</div>
+
+<div class="box">
+<h3>Бонус</h3>
+<p id="bonus">0</p>
+</div>
+
+<div class="box">
+<h3>Получите</h3>
+<p id="total">100000</p>
+</div>
+
+</div>
+
+<button class="buy">
+КУПИТЬ
+</button>
+
+</div>
+
+</div>
+
+<script>
+const slider=document.getElementById("slider");
+
+function update(){
+
+let amount=parseInt(slider.value);
+
+let price=(amount/100000)*70;
+
+let bonus=0;
+
+if(amount>=10000000){
+bonus=25;
+}else if(amount>=5000000){
+bonus=20;
+}else if(amount>=1000000){
+bonus=15;
+}
+
+let bonusAmount=Math.floor(amount*bonus/100);
+
+document.getElementById("amount").innerText=
+amount.toLocaleString("ru-RU");
+
+document.getElementById("price").innerText=
+price.toLocaleString("ru-RU")+" ₽";
+
+document.getElementById("bonus").innerText=
+bonusAmount.toLocaleString("ru-RU");
+
+document.getElementById("total").innerText=
+(amount+bonusAmount).toLocaleString("ru-RU");
+
+}
+
+slider.addEventListener("input",update);
+update();
+</script>
+
+</body>
+</html>
