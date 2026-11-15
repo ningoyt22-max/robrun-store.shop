@@ -3,156 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Личный кабинет | ROBRUN STORE</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Личный кабинет</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Inter,sans-serif;
-}
-
 body{
-background:#0b0f16;
-color:white;
-min-height:100vh;
-}
-
-body::before{
-content:"";
-position:fixed;
-inset:0;
-
-background:
-linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-
-background-size:60px 60px;
-
-z-index:-2;
+    margin:0;
+    background:#0b0f16;
+    color:white;
+    font-family:Arial,sans-serif;
 }
 
 .header{
-height:90px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:0 40px;
-
-background:#111722;
-
-border-bottom:
-1px solid rgba(255,255,255,.08);
+    background:#161b22;
+    padding:20px;
 }
 
 .logo{
-font-size:32px;
-font-weight:800;
-color:#ff9d00;
-}
-
-.nav{
-display:flex;
-gap:25px;
-}
-
-.nav a{
-color:white;
-text-decoration:none;
+    color:#ff9d00;
+    font-size:30px;
+    font-weight:bold;
 }
 
 .container{
-max-width:1200px;
-margin:auto;
-padding:40px 20px;
-}
-
-.welcome{
-margin-bottom:40px;
-}
-
-.welcome h1{
-font-size:48px;
-margin-bottom:10px;
-}
-
-.welcome p{
-color:#999;
-}
-
-.cards{
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-
-gap:20px;
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
 }
 
 .card{
-background:#161b22;
-
-border:
-1px solid rgba(255,255,255,.08);
-
-padding:25px;
-
-border-radius:20px;
-
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-}
-
-.card h3{
-color:#ff9d00;
-margin-bottom:15px;
-}
-
-.balance{
-font-size:48px;
-font-weight:800;
+    background:#161b22;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:20px;
 }
 
 .btn{
-display:inline-block;
-
-padding:15px 25px;
-
-border:none;
-border-radius:12px;
-
-cursor:pointer;
-
-color:white;
-font-weight:700;
-text-decoration:none;
-
-background:
-linear-gradient(
-135deg,
-#ff6b00,
-#ffb300
-);
+    background:#ff9d00;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:10px;
+    cursor:pointer;
 }
-
-.logout{
-margin-top:35px;
-}
-
 </style>
-
 </head>
+
 <body>
 
-<header class="header">
-
+<div class="header">
 <div class="logo">
-ROBRUN
+ROBRUN STORE
+</div>
+</div>
+
+<div class="container">
+
+<h1>Личный кабинет</h1>
+
+<div class="card">
+Email:
+<b id="email">Загрузка...</b>
+</div>
+
+<div class="card">
+Баланс: 0 ₽
+</div>
+
+<button id="logout" class="btn">
+Выйти
+</button>
+
+</div>
+
+<script type="module">
+
+import {
+auth,
+signOut,
+onAuthStateChanged
+} from "./firebase.js";
+
+onAuthStateChanged(auth,(user)=>{
+
+    if(!user){
+        location.href="login.html";
+        return;
+    }
+
+    document.getElementById("email").textContent =
+    user.email;
+
+});
+
+document.getElementById("logout")
+.addEventListener("click",async()=>{
+
+    await signOut(auth);
+
+    location.href="index.html";
+
+});
+
+</script>
+
+</body>
+</html>
