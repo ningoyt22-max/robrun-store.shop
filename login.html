@@ -1,110 +1,49 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Авторизация | ROBRUN STORE</title>
+<input id="email" type="email" placeholder="Email">
 
-<style>
+<input id="password" type="password" placeholder="Пароль">
 
-body{
-margin:0;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:#0b0b0f;
-font-family:Arial,sans-serif;
-}
-
-.login{
-width:400px;
-background:#14141c;
-padding:40px;
-border-radius:20px;
-color:white;
-box-shadow:0 0 25px rgba(255,100,0,.3);
-}
-
-h1{
-text-align:center;
-margin-bottom:30px;
-color:#ffb700;
-}
-
-input{
-width:100%;
-padding:15px;
-margin-bottom:15px;
-border:none;
-border-radius:10px;
-background:#1f1f2a;
-color:white;
-}
-
-button{
-width:100%;
-padding:15px;
-border:none;
-border-radius:10px;
-background:linear-gradient(45deg,#ff2a00,#ffb700);
-color:white;
-font-weight:bold;
-cursor:pointer;
-}
-
-.social{
-margin-top:20px;
-display:grid;
-gap:10px;
-}
-
-.social button{
-background:#23232d;
-}
-
-.register{
-text-align:center;
-margin-top:20px;
-}
-
-a{
-color:#ffb700;
-text-decoration:none;
-}
-
-</style>
-</head>
-<body>
-
-<div class="login">
-
-<h1>Вход</h1>
-
-<input type="email" placeholder="E-mail">
-
-<input type="password" placeholder="Пароль">
-
-<button>
+<button id="loginBtn">
 Войти
 </button>
 
-<div class="social">
+<script type="module">
 
-<button>Войти через Google</button>
+import {
+auth,
+signInWithEmailAndPassword
+}
+from "./firebase.js";
 
-<button>Войти через Telegram</button>
+document
+.getElementById("loginBtn")
+.addEventListener("click",()=>{
 
-<button>Войти через Discord</button>
+const email =
+document.getElementById("email").value;
 
-</div>
+const password =
+document.getElementById("password").value;
 
-<div class="register">
-Нет аккаунта?
-<a href="register.html">Регистрация</a>
-</div>
+signInWithEmailAndPassword(
+auth,
+email,
+password
+)
 
-</div>
+.then(()=>{
 
-</body>
-</html>
+alert("Вход выполнен");
+
+location.href="account.html";
+
+})
+
+.catch(error=>{
+
+alert(error.message);
+
+});
+
+});
+
+</script>

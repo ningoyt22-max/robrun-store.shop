@@ -1,27 +1,42 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<title>Личный кабинет</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
 <h1>Личный кабинет</h1>
 
-<div class="card">
-Баланс: 0 ₽
-</div>
+<p id="userEmail"></p>
 
-<div class="card">
-Активных заказов: 0
-</div>
+<button id="logout">
+Выйти
+</button>
 
-<div class="card">
-История покупок
-</div>
+<script type="module">
 
-<a href="deposit.html">Пополнить баланс</a>
+import {
+auth,
+signOut,
+onAuthStateChanged
+}
+from "./firebase.js";
 
-</body>
-</html>
+onAuthStateChanged(auth,user=>{
+
+if(!user){
+
+location.href="login.html";
+
+return;
+
+}
+
+document
+.getElementById("userEmail")
+.innerText=user.email;
+
+});
+
+document
+.getElementById("logout")
+.addEventListener("click",()=>{
+
+signOut(auth);
+
+});
+
+</script>

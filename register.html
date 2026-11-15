@@ -1,23 +1,49 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<title>Регистрация</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+<input id="email" type="email">
 
-<div class="auth-box">
-<h1>Регистрация</h1>
+<input id="password" type="password">
 
-<input type="text" placeholder="Логин">
-<input type="email" placeholder="E-mail">
-<input type="password" placeholder="Пароль">
+<button id="registerBtn">
+Регистрация
+</button>
 
-<button>Создать аккаунт</button>
+<script type="module">
 
-<a href="login.html">Уже есть аккаунт?</a>
-</div>
+import {
+auth,
+createUserWithEmailAndPassword
+}
+from "./firebase.js";
 
-</body>
-</html>
+document
+.getElementById("registerBtn")
+.addEventListener("click",()=>{
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+createUserWithEmailAndPassword(
+auth,
+email,
+password
+)
+
+.then(()=>{
+
+alert("Аккаунт создан");
+
+location.href="account.html";
+
+})
+
+.catch(error=>{
+
+alert(error.message);
+
+});
+
+});
+
+</script>
