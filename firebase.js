@@ -21,7 +21,8 @@ const firebaseConfig = {
   projectId: "robrun-git",
   storageBucket: "robrun-git.firebasestorage.app",
   messagingSenderId: "736942180958",
-  appId: "1:736942180958:web:de6c22d2c3d1d051b582cf"
+  appId: "1:736942180958:web:de6c22d2c3d1d051b582cf",
+  measurementId: "G-7ZNFE1MM8D"
 };
 
 const app = initializeApp(firebaseConfig);
