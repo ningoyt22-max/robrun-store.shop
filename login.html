@@ -1,49 +1,62 @@
-<input id="email" type="email" placeholder="Email">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вход | ROBRUN STORE</title>
 
-<input id="password" type="password" placeholder="Пароль">
+<style>
 
-<button id="loginBtn">
-Войти
-</button>
+body{
+    margin:0;
+    background:#0b0f16;
+    font-family:Arial,sans-serif;
+    color:white;
 
-<script type="module">
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-import {
-auth,
-signInWithEmailAndPassword
+    min-height:100vh;
 }
-from "./firebase.js";
 
-document
-.getElementById("loginBtn")
-.addEventListener("click",()=>{
+.card{
+    width:400px;
 
-const email =
-document.getElementById("email").value;
+    background:#161b22;
 
-const password =
-document.getElementById("password").value;
+    border:1px solid rgba(255,255,255,.08);
 
-signInWithEmailAndPassword(
-auth,
-email,
-password
-)
+    border-radius:20px;
 
-.then(()=>{
+    padding:35px;
+}
 
-alert("Вход выполнен");
+h1{
+    text-align:center;
+    color:#ff9d00;
+    margin-bottom:25px;
+}
 
-location.href="account.html";
+input{
+    width:100%;
+    padding:15px;
 
-})
+    background:#0d1117;
+    color:white;
 
-.catch(error=>{
+    border:none;
+    border-radius:12px;
 
-alert(error.message);
+    margin-bottom:15px;
 
-});
+    box-sizing:border-box;
+}
 
-});
+button{
+    width:100%;
 
-</script>
+    padding:15px;
+
+    border:none;
+    border-radius:

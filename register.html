@@ -2,103 +2,16 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Регистрация | ROBRUN STORE</title>
-
-<style>
-body{
-    margin:0;
-    background:#0b0f16;
-    color:white;
-    font-family:Arial,sans-serif;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    min-height:100vh;
-}
-
-.card{
-    width:400px;
-    background:#161b22;
-    padding:35px;
-    border-radius:20px;
-    border:1px solid rgba(255,255,255,.08);
-}
-
-h1{
-    text-align:center;
-    margin-bottom:25px;
-    color:#ff9d00;
-}
-
-input{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:12px;
-    background:#0d1117;
-    color:white;
-    margin-bottom:15px;
-    box-sizing:border-box;
-}
-
-button{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:bold;
-    color:white;
-
-    background:
-    linear-gradient(
-        135deg,
-        #ff6b00,
-        #ffb300
-    );
-}
-
-a{
-    color:#ff9d00;
-    text-decoration:none;
-}
-
-.login-link{
-    text-align:center;
-    margin-top:20px;
-}
-</style>
-
+<title>Регистрация</title>
 </head>
 <body>
 
-<div class="card">
-
-<h1>Регистрация</h1>
-
-<input
-id="email"
-type="email"
-placeholder="Email">
-
-<input
-id="password"
-type="password"
-placeholder="Пароль">
+<input id="email" type="email" placeholder="Email">
+<input id="password" type="password" placeholder="Пароль">
 
 <button id="registerBtn">
-Создать аккаунт
+Регистрация
 </button>
-
-<div class="login-link">
-Уже есть аккаунт?
-<a href="login.html">Войти</a>
-</div>
-
-</div>
 
 <script type="module">
 
@@ -109,41 +22,40 @@ createUserWithEmailAndPassword
 
 document
 .getElementById("registerBtn")
-.addEventListener("click", async () => {
+.onclick = async () => {
 
-    const email =
-    document.getElementById("email").value;
+const email =
+document.getElementById("email").value;
 
-    const password =
-    document.getElementById("password").value;
+const password =
+document.getElementById("password").value;
 
-    try {
+try {
 
-        await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+const user =
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
 
-        alert("Аккаунт успешно создан!");
+alert("Успешно!");
 
-        window.location.href =
-        "account.html";
+console.log(user);
 
-    } catch (error) {
+}
+catch(e){
 
-        console.error(error);
+alert(
+e.code + "\n" +
+e.message
+);
 
-        alert(
-            "Ошибка: " +
-            error.code +
-            "\n\n" +
-            error.message
-        );
+console.log(e);
 
-    }
+}
 
-});
+}
 
 </script>
 
