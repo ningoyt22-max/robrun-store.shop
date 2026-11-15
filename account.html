@@ -1,25 +1,225 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Личный кабинет | ROBRUN STORE</title>
 
-<h1>Личный кабинет</h1>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<div class="card">
-<p>Email:</p>
-<h3 id="email">Загрузка...</h3>
-</div>
+<style>
 
-<div class="card">
-<p>Баланс</p>
-<h2>0 ₽</h2>
-</div>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
 
-<div class="card">
-<a href="shop.html" class="btn">
-Купить валюту
-</a>
-</div>
+body{
+background:#0a0f18;
+color:white;
+min-height:100vh;
+overflow-x:hidden;
+}
 
-<button id="logout" class="btn">
-Выйти
-</button>
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background-image:
+linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+background-size:50px 50px;
+z-index:-2;
+}
 
-</div>
+body::after{
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+right:-200px;
+top:-200px;
+background:radial-gradient(circle,#ff7b0030,transparent 70%);
+z-index:-1;
+}
+
+.header{
+height:80px;
+background:#111722;
+border-bottom:1px solid rgba(255,255,255,.08);
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:0 40px;
+}
+
+.logo{
+color:#ff9d00;
+font-size:30px;
+font-weight:900;
+}
+
+.nav{
+display:flex;
+gap:25px;
+}
+
+.nav a{
+color:white;
+text-decoration:none;
+}
+
+.container{
+max-width:1300px;
+margin:auto;
+padding:40px 20px;
+}
+
+.profile{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:25px;
+
+padding:30px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+margin-bottom:30px;
+}
+
+.avatar{
+width:80px;
+height:80px;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:32px;
+font-weight:800;
+
+background:linear-gradient(
+135deg,
+#ff6b00,
+#ffb300
+);
+}
+
+.user{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.card{
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:25px;
+
+padding:25px;
+
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h3{
+color:#ff9d00;
+margin-bottom:15px;
+}
+
+.balance{
+font-size:48px;
+font-weight:900;
+}
+
+.btn{
+display:inline-block;
+
+padding:14px 24px;
+
+border:none;
+border-radius:15px;
+
+cursor:pointer;
+
+font-weight:700;
+
+color:white;
+text-decoration:none;
+
+background:
+linear-gradient(
+135deg,
+#ff6b00,
+#ffb300
+);
+}
+
+.orders{
+margin-top:30px;
+}
+
+.order{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+
+padding:20px;
+
+border-radius:20px;
+
+margin-top:15px;
+}
+
+.email{
+color:#ffb300;
+}
+
+.logout{
+margin-top:30px;
+}
+
+@media(max-width:900px){
+
+.profile{
+flex-direction:column;
+gap:20px;
+text-align:center;
+}
+
+.header{
+flex-direction:column;
+height:auto;
+padding:20px;
+gap:15px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="
