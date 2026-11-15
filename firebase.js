@@ -16,7 +16,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCWeTcNCYYWJ_u6BbHHnxPqQmqRcEPMAPg",
+  apiKey: "AIzaSyCWeTcNCYYWJ_u6BbHHnxPqQmqRcEPmAPg",
   authDomain: "robrun-git.firebaseapp.com",
   projectId: "robrun-git",
   storageBucket: "robrun-git.firebasestorage.app",
