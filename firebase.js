@@ -8,8 +8,15 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCWeTcNCYYWJ_u6BbHHnxPqQmqRcEPmAPg",
+  apiKey: "AIzaSyCWeTcNCYYWJ_u6BbHHnxPqQmqRcEPMAPg",
   authDomain: "robrun-git.firebaseapp.com",
   projectId: "robrun-git",
   storageBucket: "robrun-git.firebasestorage.app",
@@ -21,11 +28,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 export {
   auth,
+  db,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  doc,
+  setDoc,
+  getDoc
 };
