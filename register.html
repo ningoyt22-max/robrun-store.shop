@@ -1,9 +1,21 @@
-<input id="email" type="email">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Регистрация</title>
+</head>
+<body>
 
-<input id="password" type="password">
+<h1>Регистрация</h1>
 
-<button id="registerBtn">
-Регистрация
+<input id="email" type="email" placeholder="Email">
+<br><br>
+
+<input id="password" type="password" placeholder="Пароль">
+<br><br>
+
+<button id="register">
+Создать аккаунт
 </button>
 
 <script type="module">
@@ -11,12 +23,11 @@
 import {
 auth,
 createUserWithEmailAndPassword
-}
-from "./firebase.js";
+} from "./firebase.js";
 
 document
-.getElementById("registerBtn")
-.addEventListener("click",()=>{
+.getElementById("register")
+.addEventListener("click", async ()=>{
 
 const email =
 document.getElementById("email").value;
@@ -24,26 +35,26 @@ document.getElementById("email").value;
 const password =
 document.getElementById("password").value;
 
-createUserWithEmailAndPassword(
+try{
+
+await createUserWithEmailAndPassword(
 auth,
 email,
 password
-)
+);
 
-.then(()=>{
+alert("Аккаунт создан!");
 
-alert("Аккаунт создан");
-
-location.href="account.html";
-
-})
-
-.catch(error=>{
+}
+catch(error){
 
 alert(error.message);
 
-});
+}
 
 });
 
 </script>
+
+</body>
+</html>

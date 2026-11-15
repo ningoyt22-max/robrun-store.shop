@@ -3,28 +3,23 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/fireba
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged
+  signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCWeTcNCYYWJ_u6BbHHnxPqQmqRcEPMAPg",
+  apiKey: "AIzaSyCWeTcNCYYWJ_u6BbHHnxPqQmqRcEPmAPg",
   authDomain: "robrun-git.firebaseapp.com",
   projectId: "robrun-git",
   storageBucket: "robrun-git.firebasestorage.app",
   messagingSenderId: "736942180958",
-  appId: "1:736942180958:web:de6c22d2c3d1d051b582cf",
-  measurementId: "G-7ZNFE1MM8D"
+  appId: "1:736942180958:web:de6c22d2c3d1d051b582cf"
 };
 
 const app = initializeApp(firebaseConfig);
-
-export const auth = getAuth(app);
+const auth = getAuth(app);
 
 export {
+  auth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged
+  signInWithEmailAndPassword
 };
