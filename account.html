@@ -6,6 +6,8 @@
 
 <title>Личный кабинет | ROBRUN STORE</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 
 *{
@@ -21,16 +23,47 @@ color:white;
 min-height:100vh;
 }
 
+body::before{
+content:"";
+position:fixed;
+inset:0;
+
+background:
+linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+
+background-size:60px 60px;
+
+z-index:-2;
+}
+
 .header{
-padding:20px 40px;
-border-bottom:1px solid rgba(255,255,255,.08);
+height:90px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 40px;
+
 background:#111722;
+
+border-bottom:
+1px solid rgba(255,255,255,.08);
 }
 
 .logo{
 font-size:32px;
 font-weight:800;
 color:#ff9d00;
+}
+
+.nav{
+display:flex;
+gap:25px;
+}
+
+.nav a{
+color:white;
+text-decoration:none;
 }
 
 .container{
@@ -40,11 +73,11 @@ padding:40px 20px;
 }
 
 .welcome{
-margin-bottom:30px;
+margin-bottom:40px;
 }
 
 .welcome h1{
-font-size:42px;
+font-size:48px;
 margin-bottom:10px;
 }
 
@@ -54,15 +87,28 @@ color:#999;
 
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+
 gap:20px;
 }
 
 .card{
 background:#161b22;
-border:1px solid rgba(255,255,255,.08);
+
+border:
+1px solid rgba(255,255,255,.08);
+
 padding:25px;
+
 border-radius:20px;
+
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
 }
 
 .card h3{
@@ -77,13 +123,17 @@ font-weight:800;
 
 .btn{
 display:inline-block;
+
 padding:15px 25px;
-border-radius:12px;
-text-decoration:none;
+
 border:none;
+border-radius:12px;
+
 cursor:pointer;
+
 color:white;
-font-weight:bold;
+font-weight:700;
+text-decoration:none;
 
 background:
 linear-gradient(
@@ -94,128 +144,15 @@ linear-gradient(
 }
 
 .logout{
-margin-top:30px;
+margin-top:35px;
 }
 
 </style>
-</head>
 
+</head>
 <body>
 
-<div class="header">
+<header class="header">
 
 <div class="logo">
-ROBRUN STORE
-</div>
-
-</div>
-
-<div class="container">
-
-<div class="welcome">
-
-<h1>
-Личный кабинет
-</h1>
-
-<p>
-Добро пожаловать,
-<span id="email"></span>
-</p>
-
-</div>
-
-<div class="cards">
-
-<div class="card">
-
-<h3>Баланс</h3>
-
-<div class="balance">
-0 ₽
-</div>
-
-</div>
-
-<div class="card">
-
-<h3>Покупка валюты</h3>
-
-<p>
-Покупайте игровую валюту RobRun
-по лучшим ценам.
-</p>
-
-<br>
-
-<a href="shop.html" class="btn">
-Перейти в магазин
-</a>
-
-</div>
-
-<div class="card">
-
-<h3>Заказы</h3>
-
-<p>
-У вас пока нет заказов.
-</p>
-
-</div>
-
-</div>
-
-<div class="logout">
-
-<button
-id="logout"
-class="btn">
-
-Выйти
-
-</button>
-
-</div>
-
-</div>
-
-<script type="module">
-
-import {
-auth,
-signOut,
-onAuthStateChanged
-}
-from "./firebase.js";
-
-onAuthStateChanged(auth,(user)=>{
-
-if(!user){
-
-location.href="login.html";
-return;
-
-}
-
-document.getElementById(
-"email"
-).textContent =
-user.email;
-
-});
-
-document
-.getElementById("logout")
-.addEventListener("click",async()=>{
-
-await signOut(auth);
-
-location.href="login.html";
-
-});
-
-</script>
-
-</body>
-</html>
+ROBRUN
