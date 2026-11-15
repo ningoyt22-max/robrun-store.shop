@@ -1,239 +1,19 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Регистрация | ROBRUN STORE</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
-
-body{
-background:#0a0f18;
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-color:white;
-overflow:hidden;
-}
-
-body::before{
-content:"";
-position:fixed;
-inset:0;
-
-background-image:
-linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-
-background-size:50px 50px;
-
-z-index:-2;
-}
-
-body::after{
-content:"";
-position:fixed;
-width:700px;
-height:700px;
-right:-250px;
-top:-250px;
-
-background:
-radial-gradient(
-circle,
-rgba(255,140,0,.3),
-transparent 70%
-);
-
-z-index:-1;
-}
-
-.card{
-
-width:450px;
-
-background:
-rgba(255,255,255,.05);
-
-backdrop-filter:blur(20px);
-
-border:
-1px solid rgba(255,255,255,.08);
-
-border-radius:30px;
-
-padding:40px;
-
-box-shadow:
-0 20px 60px rgba(0,0,0,.4);
-
-}
-
-.logo{
-
-text-align:center;
-
-font-size:38px;
-font-weight:900;
-
-color:#ff9d00;
-
-margin-bottom:10px;
-
-}
-
-.subtitle{
-
-text-align:center;
-
-color:#9ca3af;
-
-margin-bottom:35px;
-
-}
-
-input{
-
-width:100%;
-
-padding:16px;
-
-margin-bottom:15px;
-
-background:#111722;
-
-border:none;
-
-border-radius:15px;
-
-color:white;
-
-font-size:16px;
-
-}
-
-input:focus{
-
-outline:none;
-
-border:1px solid #ff9d00;
-
-}
-
-button{
-
-width:100%;
-
-padding:16px;
-
-border:none;
-cursor:pointer;
-
-border-radius:15px;
-
-font-size:17px;
-font-weight:700;
-
-color:white;
-
-background:
-linear-gradient(
-135deg,
-#ff6b00,
-#ffb300
-);
-
-transition:.3s;
-
-}
-
-button:hover{
-
-transform:
-translateY(-2px);
-
-}
-
-.footer{
-
-margin-top:25px;
-
-text-align:center;
-
-color:#9ca3af;
-
-}
-
-.footer a{
-
-color:#ff9d00;
-
-text-decoration:none;
-
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="card">
-
-<div class="logo">
-ROBRUN STORE
-</div>
-
-<div class="subtitle">
-Создание нового аккаунта
-</div>
-
-<input
-id="email"
-type="email"
-placeholder="Ваш Email">
-
-<input
-id="password"
-type="password"
-placeholder="Пароль">
-
-<button id="registerBtn">
-Создать аккаунт
-</button>
-
-<div class="footer">
-
-Уже есть аккаунт?
-
-<a href="login.html">
-Войти
-</a>
-
-</div>
-
-</div>
-
 <script type="module">
 
 import {
 auth,
-createUserWithEmailAndPassword
-} from "./firebase.js";
+db,
+createUserWithEmailAndPassword,
+doc,
+setDoc
+}
+from "./firebase.js";
 
 document
 .getElementById("registerBtn")
-.addEventListener("click", async()=>{
+.addEventListener("click", async () => {
+
+try {
 
 const email =
 document.getElementById("email").value;
@@ -241,21 +21,32 @@ document.getElementById("email").value;
 const password =
 document.getElementById("password").value;
 
-try{
-
+const userCredential =
 await createUserWithEmailAndPassword(
 auth,
 email,
 password
 );
 
-alert("✅ Аккаунт создан!");
+const user =
+userCredential.user;
 
-location.href =
-"account.html";
+await setDoc(
+doc(db,"users",user.uid),
+{
+email:user.email,
+balance:0,
+orders:0,
+createdAt:Date.now()
+}
+);
+
+alert("Firestore OK");
 
 }
 catch(error){
+
+console.error(error);
 
 alert(
 error.code +
@@ -268,6 +59,3 @@ error.message
 });
 
 </script>
-
-</body>
-</html>
