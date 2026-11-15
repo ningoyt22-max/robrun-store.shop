@@ -11,7 +11,7 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
 
-apiKey: "ТВОЙ_API_KEY",
+apiKey: "AIzaSyCWeTcNCYYWJ_u6BbHHnxPqQmqRcEPmAPg",
 
 authDomain: "robrun-git.firebaseapp.com",
 
