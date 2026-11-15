@@ -2,16 +2,86 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Пополнение</title>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Пополнение баланса</title>
+
+<style>
+body{
+background:#0a0f18;
+color:white;
+font-family:Arial,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.card{
+width:500px;
+padding:30px;
+background:#161b22;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+input{
+width:100%;
+padding:15px;
+margin:15px 0;
+border:none;
+border-radius:10px;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:#ff9800;
+color:white;
+font-weight:bold;
+}
+</style>
 </head>
 <body>
 
+<div class="card">
+
 <h1>Пополнение баланса</h1>
 
-<button>Банковская карта</button>
-<button>Monobank</button>
-<button>USDT</button>
+<p>
+Для теста введите сумму:
+</p>
+
+<input
+id="amount"
+type="number"
+placeholder="100">
+
+<button id="depositBtn">
+Создать заявку
+</button>
+
+</div>
+
+<script>
+document
+.getElementById("depositBtn")
+.addEventListener("click",()=>{
+
+const amount =
+document.getElementById("amount").value;
+
+alert(
+"Заявка на пополнение " +
+amount +
+" ₽ создана"
+);
+
+});
+</script>
 
 </body>
 </html>
