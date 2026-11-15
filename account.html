@@ -386,7 +386,7 @@ class="email">
 Баланс
 </h3>
 
-<div class="balance">
+<div id="balance" class="balance">
 0 ₽
 </div>
 
@@ -484,27 +484,43 @@ class="btn">
 
 import {
 auth,
+db,
+doc,
+getDoc,
 onAuthStateChanged,
 signOut
 }
 from "./firebase.js";
 
+
 const emailElement =
 document.getElementById("email");
 
-onAuthStateChanged(auth,(user)=>{
+onAuthStateChanged(auth, async (user)=>{
 
-if(user){
+    if(!user){
 
-emailElement.textContent =
-user.email;
+        location.href="login.html";
+        return;
 
-}else{
+    }
 
-location.href =
-"login.html";
+    emailElement.textContent =
+    user.email;
 
-}
+    const userRef =
+    doc(db,"users",user.uid);
+
+    const userSnap =
+    await getDoc(userRef);
+
+    if(userSnap.exists()){
+
+        document.getElementById("balance")
+        .textContent =
+        userSnap.data().balance + " ₽";
+
+    }
 
 });
 
