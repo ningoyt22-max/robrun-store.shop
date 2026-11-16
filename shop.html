@@ -430,62 +430,51 @@ value="100000">
 <script type="module">
 
 import {
-auth,
-db,
-doc,
-getDoc,
-updateDoc,
-onAuthStateChanged
-}
-from "./firebase.js";
+  auth,
+  db,
+  doc,
+  getDoc,
+  updateDoc,
+  onAuthStateChanged
+} from "./firebase.js";
 
 const slider = document.getElementById("slider");
 
 let currentUser = null;
 
-function updateCalc(){
+function updateCalc() {
 
-let amount = parseInt(slider.value);
+  let amount = parseInt(slider.value);
 
-let price = (amount / 100000) * 70;
+  let price = (amount / 100000) * 70;
 
-let bonusPercent = 0;
+  let bonusPercent = 0;
 
-if(amount >= 10000000){
+  if (amount >= 10000000) {
+    bonusPercent = 25;
+  } else if (amount >= 5000000) {
+    bonusPercent = 20;
+  } else if (amount >= 1000000) {
+    bonusPercent = 15;
+  }
 
-bonusPercent = 25;
+  let bonus =
+  Math.floor(amount * bonusPercent / 100);
 
-}
-else if(amount >= 5000000){
+  document.getElementById("amount").textContent =
+  amount.toLocaleString("ru-RU");
 
-bonusPercent = 20;
+  document.getElementById("price").textContent =
+  price.toLocaleString("ru-RU") + " ₽";
 
-}
-else if(amount >= 1000000){
+  document.getElementById("bonusPercent").textContent =
+  bonusPercent + "%";
 
-bonusPercent = 15;
+  document.getElementById("bonus").textContent =
+  bonus.toLocaleString("ru-RU");
 
-}
-
-let bonus =
-Math.floor(
-amount * (bonusPercent / 100)
-);
-
-document.getElementById("amount").textContent =
-amount.toLocaleString("ru-RU");
-
-document.getElementById("price").textContent =
-price.toLocaleString("ru-RU") + " ₽";
-
-document.getElementById("bonusPercent").textContent =
-bonusPercent + "%";
-
-document.getElementById("bonus").textContent =
-bonus.toLocaleString("ru-RU");
-
-document.getElementById("total").textContent =
-(amount + bonus).toLocaleString("ru-RU");
+  document.getElementById("total").textContent =
+  (amount + bonus).toLocaleString("ru-RU");
 
 }
 
@@ -493,86 +482,70 @@ slider.addEventListener("input", updateCalc);
 
 updateCalc();
 
-onAuthStateChanged(auth,(user)=>{
-
-currentUser = user;
-
+onAuthStateChanged(auth, (user) => {
+  currentUser = user;
 });
 
 document
 .getElementById("buyBtn")
-.addEventListener("click", async ()=>{
+.addEventListener("click", async () => {
 
-if(!currentUser){
+  if (!currentUser) {
 
-alert("Сначала войдите в аккаунт");
+    alert("Сначала войдите в аккаунт");
 
-location.href = "login.html";
+    location.href = "login.html";
 
-return;
+    return;
+  }
 
-}
+  const amount =
+  parseInt(slider.value);
 
-const amount =
-parseInt(slider.value);
+  const price =
+  (amount / 100000) * 70;
 
-const price =
-(amount / 100000) * 70;
+  const userRef =
+  doc(db, "users", currentUser.uid);
 
-const userRef =
-doc(db,"users",currentUser.uid);
+  const userSnap =
+  await getDoc(userRef);
 
-const userSnap =
-await getDoc(userRef);
+  if (!userSnap.exists()) {
 
-if(!userSnap.exists()){
+    alert("Пользователь не найден");
 
-alert("Пользователь не найден");
+    return;
+  }
 
-return;
+  const balance =
+  userSnap.data().balance;
 
-}
+  if (balance < price) {
 
-const balance =
-userSnap.data().balance;
+    alert(
+      "Недостаточно средств!\n\n" +
+      "Баланс: " + balance + " ₽\n" +
+      "Стоимость: " + price + " ₽"
+    );
 
-if(balance < price){
+    return;
+  }
 
-alert(
-"Недостаточно средств!\n\n" +
-"Баланс: " +
-balance +
-" ₽\n" +
-"Стоимость: " +
-price +
-" ₽"
-);
+  const newBalance =
+  balance - price;
 
-return;
+  await updateDoc(userRef, {
+    balance: newBalance
+  });
 
-}
+  alert(
+    "✅ Покупка успешна!\n\n" +
+    "Списано: " + price + " ₽\n" +
+    "Новый баланс: " + newBalance + " ₽"
+  );
 
-const newBalance =
-balance - price;
-
-await updateDoc(
-userRef,
-{
-balance:newBalance
-}
-);
-
-alert(
-"✅ Покупка успешна!\n\n" +
-"Списано: " +
-price +
-" ₽\n" +
-"Новый баланс: " +
-newBalance +
-" ₽"
-);
-
-location.href = "account.html";
+  location.href = "account.html";
 
 });
 
