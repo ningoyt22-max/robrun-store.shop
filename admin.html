@@ -6,6 +6,7 @@
 <title>ROBRUN ADMIN</title>
 
 <style>
+
 body{
 background:#0b0f16;
 color:white;
@@ -13,18 +14,34 @@ font-family:Arial,sans-serif;
 padding:20px;
 }
 
-.order{
-background:#161b22;
-padding:20px;
-border-radius:15px;
-margin-bottom:15px;
-}
-
 h1{
 color:#ff9800;
 }
+
+.order{
+
+background:#161b22;
+padding:20px;
+margin-bottom:15px;
+border-radius:15px;
+
+}
+
+button{
+
+background:#ff9800;
+border:none;
+padding:10px 15px;
+cursor:pointer;
+color:white;
+border-radius:10px;
+
+}
+
 </style>
+
 </head>
+
 <body>
 
 <h1>📦 Заказы ROBRUN</h1>
@@ -37,9 +54,10 @@ import {
 db,
 collection,
 getDocs
-} from "./firebase.js";
+}
+from "./firebase.js";
 
-const ordersDiv =
+const ordersContainer =
 document.getElementById("orders");
 
 const snapshot =
@@ -52,7 +70,7 @@ snapshot.forEach(orderDoc=>{
 const order =
 orderDoc.data();
 
-ordersDiv.innerHTML += `
+ordersContainer.innerHTML += `
 
 <div class="order">
 
@@ -63,6 +81,12 @@ ordersDiv.innerHTML += `
 <p><b>Цена:</b> ${order.price} ₽</p>
 
 <p><b>Статус:</b> ${order.status}</p>
+
+<p><b>Исполнитель:</b> ${order.worker || 'Никто'}</p>
+
+<button>
+Взять заказ
+</button>
 
 </div>
 
