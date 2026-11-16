@@ -427,61 +427,70 @@ value="100000">
 
 </div>
 
-<script>
-
-const slider=document.getElementById("slider");
-
-function updateCalc(){
-
-let amount=parseInt(slider.value);
-
-let price=(amount/100000)*70;
-
-let bonusPercent=0;
-
-if(amount>=10000000){
-bonusPercent=25;
-}
-else if(amount>=5000000){
-bonusPercent=20;
-}
-else if(amount>=1000000){
-bonusPercent=15;
-}
-
-let bonus=Math.floor(amount*(bonusPercent/100));
-
-document.getElementById("amount").innerText=
-amount.toLocaleString("ru-RU");
-
-document.getElementById("price").innerText=
-price.toLocaleString("ru-RU")+" ₽";
-
-document.getElementById("bonusPercent").innerText=
-bonusPercent+"%";
-
-document.getElementById("bonus").innerText=
-bonus.toLocaleString("ru-RU");
-
-document.getElementById("total").innerText=
-(amount+bonus).toLocaleString("ru-RU");
-
-}
-
-slider.addEventListener("input",updateCalc);
-
-updateCalc();
-
 document
 .getElementById("buyBtn")
-.addEventListener("click",()=>{
+.addEventListener("click", async ()=>{
 
-alert("Кнопка работает");
+try{
+
+const amount =
+parseInt(slider.value);
+
+const price =
+(amount / 100000) * 70;
+
+const userRef =
+doc(db,"users",currentUser.uid);
+
+const userSnap =
+await getDoc(userRef);
+
+const balance =
+userSnap.data().balance;
+
+if(balance < price){
+
+alert(
+"Недостаточно средств!\n\n" +
+"Баланс: " + balance + " ₽"
+);
+
+return;
+
+}
+
+const newBalance =
+balance - price;
+
+await updateDoc(
+userRef,
+{
+balance:newBalance
+}
+);
+
+alert(
+"✅ Покупка успешна!\n\n" +
+"Списано: " + price + " ₽\n" +
+"Новый баланс: " + newBalance + " ₽"
+);
+
+location.href =
+"account.html";
+
+}
+catch(error){
+
+alert(
+"Ошибка:\n\n" +
+error.message
+);
+
+console.error(error);
+
+}
 
 });
-
-</script>
-
 
 </body>
 </html>
