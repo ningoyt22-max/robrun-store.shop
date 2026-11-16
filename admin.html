@@ -2,103 +2,75 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ADMIN PANEL</title>
 
 <style>
-
 body{
 background:#0b0f16;
 color:white;
 font-family:Arial,sans-serif;
-padding:30px;
+padding:20px;
 }
 
-.card{
+.order{
 background:#161b22;
 padding:20px;
 border-radius:15px;
 margin-bottom:15px;
 }
 
-input{
-padding:10px;
-width:250px;
-margin-right:10px;
-}
-
 button{
-padding:10px 15px;
-cursor:pointer;
 background:#ff9800;
 border:none;
+padding:10px 15px;
 color:white;
+cursor:pointer;
 border-radius:8px;
 }
-
 </style>
+
 </head>
 <body>
 
-<h1>🛠 ADMIN PANEL</h1>
+<h1>🛠 Заказы</h1>
 
-<div class="card">
-
-<h3>Изменить баланс</h3>
-
-<input
-id="uid"
-placeholder="UID пользователя">
-
-<input
-id="balance"
-type="number"
-placeholder="Баланс">
-
-<button id="saveBtn">
-Сохранить
-</button>
-
-</div>
+<div id="orders"></div>
 
 <script type="module">
 
 import {
 db,
-doc,
-updateDoc
+collection,
+getDocs
 }
 from "./firebase.js";
 
-document
-.getElementById("saveBtn")
-.addEventListener("click",async()=>{
+const ordersDiv =
+document.getElementById("orders");
 
-const uid =
-document.getElementById("uid").value;
-
-const balance =
-parseInt(
-document.getElementById("balance").value
+const snap =
+await getDocs(
+collection(db,"orders")
 );
 
-try{
+snap.forEach(doc=>{
 
-await updateDoc(
-doc(db,"users",uid),
-{
-balance:balance
-}
-);
+const order =
+doc.data();
 
-alert("✅ Баланс изменен");
+ordersDiv.innerHTML += `
+<div class="order">
 
-}
-catch(error){
+<p><b>Email:</b> ${order.email}</p>
 
-alert(error.message);
+<p><b>Валюта:</b> ${order.amount}</p>
 
-}
+<p><b>Цена:</b> ${order.price} ₽</p>
+
+<p><b>Статус:</b> ${order.status}</p>
+
+</div>
+`;
 
 });
 
