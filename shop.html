@@ -462,16 +462,51 @@ document
 
 try{
 
+const amount =
+parseInt(slider.value);
+
+const price =
+(amount / 100000) * 70;
+
 const userRef =
 doc(db,"users",currentUser.uid);
 
 const userSnap =
 await getDoc(userRef);
 
+const balance =
+userSnap.data().balance;
+
+if(balance < price){
+
 alert(
-"Баланс: " +
-userSnap.data().balance
+"Недостаточно средств!\n\n" +
+"Баланс: " + balance + " ₽"
 );
+
+return;
+
+}
+
+const newBalance =
+balance - price;
+
+await updateDoc(
+userRef,
+{
+balance:newBalance
+}
+);
+
+alert(
+"✅ Покупка успешна!\n\n" +
+"Списано: " + price +
+" ₽\nНовый баланс: " +
+newBalance + " ₽"
+);
+
+location.href =
+"account.html";
 
 }
 catch(error){
