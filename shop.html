@@ -487,37 +487,18 @@ onAuthStateChanged(auth, (user) => {
 
 document
 .getElementById("buyBtn")
-.addEventListener("click", async()=>{
+.addEventListener("click", async ()=>{
 
-try{
+const amount =
+parseInt(slider.value);
 
-alert("Кнопка нажата");
-
-console.log("USER:",currentUser);
-
-const userRef =
-doc(db,"users",currentUser.uid);
-
-console.log("REF OK");
-
-const userSnap =
-await getDoc(userRef);
-
-console.log("DOC OK");
-
-alert("Баланс: " + userSnap.data().balance);
-
-}
-catch(error){
+const price =
+(amount / 100000) * 70;
 
 alert(
-"ERROR:\n\n" +
-error.message
+"Баланс: 1000\n" +
+"Стоимость: " + price
 );
-
-console.error(error);
-
-}
 
 });
 
