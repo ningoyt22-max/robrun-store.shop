@@ -1,38 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ROBRUN ADMIN</title>
 
 <style>
 body{
 background:#0b0f16;
 color:white;
-font-family:Arial;
+font-family:Arial,sans-serif;
 padding:20px;
 }
 
 .order{
 background:#161b22;
 padding:20px;
-margin-bottom:15px;
 border-radius:15px;
+margin-bottom:15px;
 }
 
-button{
-background:#ff9800;
-border:none;
-padding:10px;
-color:white;
-cursor:pointer;
-border-radius:10px;
+h1{
+color:#ff9800;
 }
 </style>
-
 </head>
 <body>
 
-<h1>📦 Заказы</h1>
+<h1>📦 Заказы ROBRUN</h1>
 
 <div id="orders"></div>
 
@@ -44,7 +39,7 @@ collection,
 getDocs
 } from "./firebase.js";
 
-const container =
+const ordersDiv =
 document.getElementById("orders");
 
 const snapshot =
@@ -57,7 +52,8 @@ snapshot.forEach(orderDoc=>{
 const order =
 orderDoc.data();
 
-container.innerHTML += `
+ordersDiv.innerHTML += `
+
 <div class="order">
 
 <p><b>Email:</b> ${order.email}</p>
@@ -69,6 +65,7 @@ container.innerHTML += `
 <p><b>Статус:</b> ${order.status}</p>
 
 </div>
+
 `;
 
 });
