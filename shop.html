@@ -458,9 +458,27 @@ updateCalc();
 
 document
 .getElementById("buyBtn")
-.addEventListener("click",()=>{
+.addEventListener("click", async ()=>{
 
-alert("Кнопка работает ✅");
+try{
+
+const userRef =
+doc(db,"users",currentUser.uid);
+
+const userSnap =
+await getDoc(userRef);
+
+alert(
+"Баланс: " +
+userSnap.data().balance
+);
+
+}
+catch(error){
+
+alert(error.message);
+
+}
 
 });
 
