@@ -489,18 +489,58 @@ document
 .getElementById("buyBtn")
 .addEventListener("click", async ()=>{
 
+try{
+
 const amount =
 parseInt(slider.value);
 
 const price =
 (amount / 100000) * 70;
 
+const userRef =
+doc(db,"users",currentUser.uid);
+
+const userSnap =
+await getDoc(userRef);
+
+const balance =
+userSnap.data().balance;
+
+if(balance < price){
+
+alert("Недостаточно средств");
+
+return;
+
+}
+
+const newBalance =
+balance - price;
+
+await updateDoc(userRef,{
+balance:newBalance
+});
+
 alert(
-"Баланс: 1000\n" +
-"Стоимость: " + price
+"✅ Покупка успешна!\n\n" +
+"Списано: " + price + " ₽\n" +
+"Новый баланс: " + newBalance + " ₽"
 );
 
+}
+catch(error){
+
+alert(
+"Ошибка:\n\n" +
+error.message
+);
+
+console.error(error);
+
+}
+
 });
+
 
 
 </script>
