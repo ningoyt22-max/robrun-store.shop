@@ -428,109 +428,6 @@ value="100000">
 </div>
 
 
-<script>
-
-const slider =
-document.getElementById("slider");
-
-function updateCalc(){
-
-let amount =
-parseInt(slider.value);
-
-let price =
-(amount / 100000) * 70;
-
-document.getElementById("amount").innerText =
-amount.toLocaleString("ru-RU");
-
-document.getElementById("price").innerText =
-price + " ₽";
-
-}
-
-slider.addEventListener(
-"input",
-updateCalc
-);
-
-updateCalc();
-
-document
-.getElementById("buyBtn")
-.addEventListener("click", async ()=>{
-
-try{
-
-const amount =
-parseInt(slider.value);
-
-const price =
-(amount / 100000) * 70;
-
-const userRef =
-doc(db,"users",currentUser.uid);
-
-const userSnap =
-await getDoc(userRef);
-
-const balance =
-userSnap.data().balance;
-
-if(balance < price){
-
-alert(
-"Недостаточно средств!\n\n" +
-"Баланс: " + balance + " ₽"
-);
-
-return;
-
-}
-
-const newBalance =
-balance - price;
-
-await updateDoc(
-userRef,
-{
-balance:newBalance
-}
-);
-
-await addDoc(
-collection(db,"orders"),
-{
-email:currentUser.email,
-userId:currentUser.uid,
-amount:amount,
-price:price,
-status:"Ожидание",
-createdAt:serverTimestamp()
-}
-);
-
-alert(
-"✅ Покупка успешна!\n\n" +
-"Списано: " + price +
-" ₽\nНовый баланс: " +
-newBalance + " ₽"
-);
-
-location.href =
-"account.html";
-
-}
-catch(error){
-
-alert(error.message);
-
-}
-
-});
-
-</script>
-
 <script type="module">
 
 import {
@@ -539,23 +436,53 @@ import {
   doc,
   getDoc,
   updateDoc,
-  addDoc,
-  collection,
-  serverTimestamp,
   onAuthStateChanged
 } from "./firebase.js";
 
-window.auth = auth;
-window.db = db;
-window.doc = doc;
-window.getDoc = getDoc;
-window.updateDoc = updateDoc;
+const slider = document.getElementById("slider");
 
 let currentUser = null;
 
-onAuthStateChanged(auth,(user)=>{
+function updateCalc() {
+  let amount = parseInt(slider.value);
+  let price = (amount / 100000) * 70;
+
+  document.getElementById("amount").innerText =
+  amount.toLocaleString("ru-RU");
+
+  document.getElementById("price").innerText =
+  price + " ₽";
+}
+
+slider.addEventListener("input", updateCalc);
+updateCalc();
+
+onAuthStateChanged(auth, (user) => {
   currentUser = user;
-  window.currentUser = user;
+});
+
+document.getElementById("buyBtn")
+.addEventListener("click", async () => {
+
+  try {
+
+    const userRef =
+    doc(db, "users", currentUser.uid);
+
+    const userSnap =
+    await getDoc(userRef);
+
+    alert(
+      "Баланс: " +
+      userSnap.data().balance
+    );
+
+  } catch (error) {
+
+    alert("Ошибка: " + error.message);
+
+  }
+
 });
 
 </script>
