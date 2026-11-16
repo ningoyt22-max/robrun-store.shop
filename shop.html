@@ -484,5 +484,31 @@ alert(error.message);
 
 </script>
 
+<script type="module">
+
+import {
+  auth,
+  db,
+  doc,
+  getDoc,
+  updateDoc,
+  onAuthStateChanged
+} from "./firebase.js";
+
+window.auth = auth;
+window.db = db;
+window.doc = doc;
+window.getDoc = getDoc;
+window.updateDoc = updateDoc;
+
+let currentUser = null;
+
+onAuthStateChanged(auth,(user)=>{
+  currentUser = user;
+  window.currentUser = user;
+});
+
+</script>
+
 </body>
 </html>
