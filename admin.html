@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>ADMIN PANEL</title>
+<title>ROBRUN ADMIN</title>
 
 <style>
 body{
@@ -18,13 +18,21 @@ padding:20px;
 margin-bottom:15px;
 border-radius:15px;
 }
+
+button{
+background:#ff9800;
+border:none;
+padding:10px;
+color:white;
+cursor:pointer;
+border-radius:10px;
+}
 </style>
 
 </head>
-
 <body>
 
-<h1>🛠 Заказы ROBRUN</h1>
+<h1>📦 Заказы</h1>
 
 <div id="orders"></div>
 
@@ -34,10 +42,9 @@ import {
 db,
 collection,
 getDocs
-}
-from "./firebase.js";
+} from "./firebase.js";
 
-const ordersDiv =
+const container =
 document.getElementById("orders");
 
 const snapshot =
@@ -45,13 +52,12 @@ await getDocs(
 collection(db,"orders")
 );
 
-snapshot.forEach(doc=>{
+snapshot.forEach(orderDoc=>{
 
 const order =
-doc.data();
+orderDoc.data();
 
-ordersDiv.innerHTML += `
-
+container.innerHTML += `
 <div class="order">
 
 <p><b>Email:</b> ${order.email}</p>
@@ -63,7 +69,6 @@ ordersDiv.innerHTML += `
 <p><b>Статус:</b> ${order.status}</p>
 
 </div>
-
 `;
 
 });

@@ -436,6 +436,9 @@ import {
   doc,
   getDoc,
   updateDoc,
+  addDoc,
+  collection,
+  serverTimestamp,
   onAuthStateChanged
 } from "./firebase.js";
 
@@ -504,6 +507,17 @@ userRef,
 balance:newBalance
 }
 );
+await addDoc(
+collection(db,"orders"),
+{
+email: currentUser.email,
+userId: currentUser.uid,
+amount: amount,
+price: price,
+status: "Ожидание",
+worker: "",
+createdAt: serverTimestamp()
+});
 
 alert(
 "✅ Покупка успешна!\n\n" +
