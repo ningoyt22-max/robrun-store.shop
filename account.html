@@ -458,9 +458,11 @@ class="btn">
 Последние заказы
 </h2>
 
-<div class="order">
+<div id="ordersList">
 
-Заказов пока нет
+<div class="order">
+Загрузка заказов...
+</div>
 
 </div>
 
@@ -487,6 +489,8 @@ auth,
 db,
 doc,
 getDoc,
+collection,
+getDocs,
 onAuthStateChanged,
 signOut
 }
@@ -522,6 +526,43 @@ onAuthStateChanged(auth, async (user)=>{
 
     }
 
+const ordersContainer =
+document.getElementById("ordersList");
+
+ordersContainer.innerHTML = "";
+
+const ordersSnapshot =
+await getDocs(
+collection(db,"orders")
+);
+
+ordersSnapshot.forEach(orderDoc=>{
+
+const order =
+orderDoc.data();
+
+if(order.email === user.email){
+
+ordersContainer.innerHTML += `
+
+<div class="order">
+
+<p><b>Валюта:</b> ${order.amount}</p>
+
+<p><b>Цена:</b> ${order.price} ₽</p>
+
+<p><b>Статус:</b> ${order.status}</p>
+
+<p><b>Исполнитель:</b>
+${order.worker || 'Не назначен'}
+</p>
+
+</div>
+
+`;
+
+}
+
 });
 
 document
@@ -534,6 +575,8 @@ await signOut(auth);
 
 location.href =
 "index.html";
+
+});
 
 });
 
