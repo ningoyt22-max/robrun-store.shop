@@ -1,14 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 
 import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc,
-  updateDoc
-} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
-
-import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -21,12 +13,8 @@ import {
   doc,
   setDoc,
   getDoc,
-  updateDoc,
-  addDoc,
-  collection,
-  serverTimestamp
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyCWeTcNCYYWJ_u6BbHHnxPqQmqRcEPmAPg",
