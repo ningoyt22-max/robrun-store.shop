@@ -8,31 +8,23 @@
 body{
 background:#0b0f16;
 color:white;
-font-family:Arial,sans-serif;
+font-family:Arial;
 padding:20px;
 }
 
 .order{
 background:#161b22;
 padding:20px;
-border-radius:15px;
 margin-bottom:15px;
-}
-
-button{
-background:#ff9800;
-border:none;
-padding:10px 15px;
-color:white;
-cursor:pointer;
-border-radius:8px;
+border-radius:15px;
 }
 </style>
 
 </head>
+
 <body>
 
-<h1>🛠 Заказы</h1>
+<h1>🛠 Заказы ROBRUN</h1>
 
 <div id="orders"></div>
 
@@ -48,17 +40,18 @@ from "./firebase.js";
 const ordersDiv =
 document.getElementById("orders");
 
-const snap =
+const snapshot =
 await getDocs(
 collection(db,"orders")
 );
 
-snap.forEach(doc=>{
+snapshot.forEach(doc=>{
 
 const order =
 doc.data();
 
 ordersDiv.innerHTML += `
+
 <div class="order">
 
 <p><b>Email:</b> ${order.email}</p>
@@ -70,6 +63,7 @@ ordersDiv.innerHTML += `
 <p><b>Статус:</b> ${order.status}</p>
 
 </div>
+
 `;
 
 });

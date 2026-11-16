@@ -498,6 +498,18 @@ balance:newBalance
 }
 );
 
+await addDoc(
+collection(db,"orders"),
+{
+email:currentUser.email,
+userId:currentUser.uid,
+amount:amount,
+price:price,
+status:"Ожидание",
+createdAt:serverTimestamp()
+}
+);
+
 alert(
 "✅ Покупка успешна!\n\n" +
 "Списано: " + price +
@@ -527,6 +539,9 @@ import {
   doc,
   getDoc,
   updateDoc,
+  addDoc,
+  collection,
+  serverTimestamp,
   onAuthStateChanged
 } from "./firebase.js";
 
