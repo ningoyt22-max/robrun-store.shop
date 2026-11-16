@@ -84,7 +84,7 @@ ordersContainer.innerHTML += `
 
 <p><b>Исполнитель:</b> ${order.worker || 'Никто'}</p>
 
-<button>
+<button onclick="takeOrder('${orderDoc.id}')">
 Взять заказ
 </button>
 
@@ -93,6 +93,26 @@ ordersContainer.innerHTML += `
 `;
 
 });
+
+import {
+  updateDoc,
+  doc
+}
+from "./firebase.js";
+
+window.takeOrder = async (id)=>{
+
+await updateDoc(
+doc(db,"orders",id),
+{
+status:"В работе",
+worker:"ningoyt@gmail.com"
+}
+);
+
+location.reload();
+
+};
 
 </script>
 
