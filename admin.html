@@ -19,29 +19,30 @@ color:#ff9800;
 }
 
 .order{
-
 background:#161b22;
 padding:20px;
 margin-bottom:15px;
 border-radius:15px;
-
 }
 
 button{
-
 background:#ff9800;
 border:none;
 padding:10px 15px;
 cursor:pointer;
 color:white;
 border-radius:10px;
+margin-right:10px;
+margin-top:10px;
+}
 
+.done{
+background:#28a745;
 }
 
 </style>
 
 </head>
-
 <body>
 
 <h1>📦 Заказы ROBRUN</h1>
@@ -51,14 +52,32 @@ border-radius:10px;
 <script type="module">
 
 import {
+auth,
 db,
+doc,
+updateDoc,
 collection,
-getDocs
+getDocs,
+onAuthStateChanged
+} from "./firebase.js";
+
+let currentUser = null;
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+currentUser = user;
+loadOrders();
 }
-from "./firebase.js";
+
+});
+
+async function loadOrders(){
 
 const ordersContainer =
 document.getElementById("orders");
+
+ordersContainer.innerHTML = "";
 
 const snapshot =
 await getDocs(
@@ -84,9 +103,24 @@ ordersContainer.innerHTML += `
 
 <p><b>Исполнитель:</b> ${order.worker || 'Никто'}</p>
 
-<button onclick="takeOrder('${orderDoc.id}')">
+${
+order.status === "Ожидание"
+?
+`<button onclick="takeOrder('${orderDoc.id}')">
 Взять заказ
-</button>
+</button>`
+:
+order.status === "В работе"
+?
+`<button class="done"
+onclick="completeOrder('${orderDoc.id}')">
+Выполнено
+</button>`
+:
+`<b style="color:#28a745">
+✅ Выполнено
+</b>`
+}
 
 </div>
 
@@ -94,19 +128,19 @@ ordersContainer.innerHTML += `
 
 });
 
-import {
-  updateDoc,
-  doc
 }
-from "./firebase.js";
 
 window.takeOrder = async (id)=>{
+
+if(!currentUser){
+return;
+}
 
 await updateDoc(
 doc(db,"orders",id),
 {
 status:"В работе",
-worker:"ningoyt@gmail.com"
+worker:currentUser.email
 }
 );
 
@@ -114,22 +148,16 @@ location.reload();
 
 };
 
-import {
-  updateDoc,
-  doc
-} from "./firebase.js";
+window.completeOrder = async (id)=>{
 
-window.takeOrder = async (id)=>{
+await updateDoc(
+doc(db,"orders",id),
+{
+status:"Выполнено"
+}
+);
 
-  await updateDoc(
-    doc(db,"orders",id),
-    {
-      status:"В работе",
-      worker:"ningoyt@gmail.com"
-    }
-  );
-
-  location.reload();
+location.reload();
 
 };
 
