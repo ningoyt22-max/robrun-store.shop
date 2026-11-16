@@ -461,27 +461,74 @@ onAuthStateChanged(auth, (user) => {
   currentUser = user;
 });
 
-document.getElementById("buyBtn")
-.addEventListener("click", async () => {
+document
+.getElementById("buyBtn")
+.addEventListener("click", async ()=>{
 
-  try {
+try{
 
-    const userRef =
-    doc(db, "users", currentUser.uid);
+const amount =
+parseInt(slider.value);
 
-    const userSnap =
-    await getDoc(userRef);
+const price =
+(amount / 100000) * 70;
 
-    alert(
-      "Баланс: " +
-      userSnap.data().balance
-    );
+const userRef =
+doc(db,"users",currentUser.uid);
 
-  } catch (error) {
+const userSnap =
+await getDoc(userRef);
 
-    alert("Ошибка: " + error.message);
+const balance =
+userSnap.data().balance;
 
-  }
+if(balance < price){
+
+alert(
+"Недостаточно средств!\n\n" +
+"Баланс: " +
+balance +
+" ₽"
+);
+
+return;
+
+}
+
+const newBalance =
+balance - price;
+
+await updateDoc(
+userRef,
+{
+balance:newBalance
+}
+);
+
+alert(
+"✅ Покупка успешна!\n\n" +
+"Списано: " +
+price +
+" ₽\n" +
+"Новый баланс: " +
+newBalance +
+" ₽"
+);
+
+location.href =
+"account.html";
+
+}
+catch(error){
+
+alert(
+"Ошибка:\n\n" +
+error.message
+);
+
+console.error(error);
+
+}
 
 });
 
