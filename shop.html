@@ -429,8 +429,6 @@ value="100000">
 
 <script type="module">
 
-alert("SCRIPT START");
-
 import {
   auth,
   db,
@@ -477,7 +475,6 @@ function updateCalc() {
 
   document.getElementById("total").textContent =
   (amount + bonus).toLocaleString("ru-RU");
-
 }
 
 slider.addEventListener("input", updateCalc);
@@ -492,66 +489,12 @@ document
 .getElementById("buyBtn")
 .addEventListener("click", async () => {
 
-  if (!currentUser) {
-
-    alert("Сначала войдите в аккаунт");
-
-    location.href = "login.html";
-
-    return;
-  }
-
-  const amount =
-  parseInt(slider.value);
-
-  const price =
-  (amount / 100000) * 70;
-
-  const userRef =
-  doc(db, "users", currentUser.uid);
-
-  const userSnap =
-  await getDoc(userRef);
-
-  if (!userSnap.exists()) {
-
-    alert("Пользователь не найден");
-
-    return;
-  }
-
-  const balance =
-  userSnap.data().balance;
-
-  if (balance < price) {
-
-    alert(
-      "Недостаточно средств!\n\n" +
-      "Баланс: " + balance + " ₽\n" +
-      "Стоимость: " + price + " ₽"
-    );
-
-    return;
-  }
-
-  const newBalance =
-  balance - price;
-
-  await updateDoc(userRef, {
-    balance: newBalance
-  });
-
-  alert(
-    "✅ Покупка успешна!\n\n" +
-    "Списано: " + price + " ₽\n" +
-    "Новый баланс: " + newBalance + " ₽"
-  );
-
-  location.href = "account.html";
+  alert("Кнопка работает");
 
 });
 
 </script>
+
 
 </body>
 </html>
