@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ROBRUN STORE — покупка игровой валюты RobRun. Быстрая выдача, бонусы до 25%, поддержка 24/7.">
+  <title>ROBRUN STORE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="tape"></div>
+
+  <!-- ШАПКА -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><div class="logo-mark">R</div>ROB<span>RUN</span> STORE</a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html" class="active">Главная</a>
+        <a href="shop.html">Купить валюту</a>
+        <a href="reviews.html">Отзывы</a>
+        <a href="faq.html">FAQ</a>
+        <a href="login.html">Войти</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- TODO: замени yourtelegram на свой ник -->
+        <a href="https://t.me/yourtelegram" class="btn btn-tg" target="_blank" rel="noopener">Telegram</a>
+        <button class="burger" id="burger" aria-label="Меню">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge"><span class="dot"></span>Валюта в наличии 24/7</div>
+          <h1>Покупка валюты <em>RobRun</em></h1>
+          <p class="lead">Безопасно. Быстро. С бонусами <b>до 25%</b>.</p>
+          <div class="hero-btns">
+            <a href="shop.html" class="btn btn-gold">Купить валюту</a>
+            <a href="account.html" class="btn btn-ghost">Личный кабинет</a>
+          </div>
+        </div>
+
+        <aside class="info-card">
+          <h3>Информация</h3>
+          <div class="info-row"><span>Статус</span><b class="ok">В наличии</b></div>
+          <div class="info-row"><span>Бонус</span><b class="gold">до 25%</b></div>
+          <div class="info-row"><span>Выдача</span><b>до 10 минут</b></div>
+          <div class="info-row"><span>Поддержка</span><b>24/7</b></div>
+        </aside>
+      </div>
+
+      <div class="container">
+        <div class="stats reveal">
+          <div class="stat"><b data-count="1500" data-suffix="+">1500+</b><span>Успешных сделок</span></div>
+          <div class="stat"><b>4.9★</b><span>Рейтинг</span></div>
+          <div class="stat"><b>24/7</b><span>Поддержка</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- КАЛЬКУЛЯТОР -->
+    <section class="section" id="calc">
+      <div class="container">
+        <h2 class="section-title reveal">Калькулятор валюты</h2>
+        <p class="section-sub reveal">Выбери сумму и сразу увидишь цену и бонус.</p>
+
+        <div class="calc reveal">
+          <div>
+            <label for="amount">Сколько валюты нужно</label>
+            <input id="amount" class="calc-input" type="text" inputmode="numeric" value="100 000" autocomplete="off">
+            <input id="range" type="range" min="10000" max="5000000" step="10000" value="100000" aria-label="Количество валюты">
+            <div class="chips" id="chips">
+              <button class="chip" data-v="100000">100K</button>
+              <button class="chip" data-v="500000">500K</button>
+              <button class="chip" data-v="1000000">1M</button>
+              <button class="chip" data-v="2500000">2.5M</button>
+              <button class="chip" data-v="5000000">5M</button>
+            </div>
+          </div>
+
+          <div class="calc-result">
+            <div class="res"><span>Стоимость</span><b id="price">70 ₽</b></div>
+            <div class="res bonus"><span>Бонус <small id="bonusPct"></small></span><b id="bonus">0</b></div>
+            <div class="res total"><span>Получите</span><b id="total">100 000</b></div>
+            <a href="shop.html" class="btn btn-gold">Оформить заказ</a>
+            <p class="calc-note">Цена и бонус рассчитываются автоматически.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ПРЕИМУЩЕСТВА -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Почему выбирают нас</h2>
+        <div class="features" style="margin-top:34px">
+          <div class="feature reveal"><div class="f-ico">⚡</div><h3>Быстрая выдача</h3><p>Передача валюты в течение нескольких минут.</p></div>
+          <div class="feature reveal"><div class="f-ico">🛡</div><h3>Безопасно</h3><p>Безопасные способы передачи валюты.</p></div>
+          <div class="feature reveal"><div class="f-ico">🎁</div><h3>Бонусы</h3><p>До 25% дополнительной валюты.</p></div>
+          <div class="feature reveal"><div class="f-ico">💬</div><h3>Поддержка</h3><p>Всегда на связи.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Отзывы</h2>
+        <div class="reviews" style="margin-top:34px">
+          <div class="review reveal"><div class="stars">★★★★★</div><p>Получил валюту за 5 минут.</p></div>
+          <div class="review reveal"><div class="stars">★★★★★</div><p>Всё быстро и безопасно.</p></div>
+          <div class="review reveal"><div class="stars">★★★★★</div><p>Лучший магазин RobRun.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title reveal">FAQ</h2>
+        <div class="faq reveal" style="margin-top:34px">
+          <details>
+            <summary>Как быстро приходит валюта?</summary>
+            <p>Обычно от 5 до 15 минут.</p>
+          </details>
+          <details>
+            <summary>Есть ли бонусы?</summary>
+            <p>Да, до 25% в зависимости от суммы заказа.</p>
+          </details>
+          <details>
+            <summary>Как связаться с поддержкой?</summary>
+            <p>Через Telegram.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta reveal">
+          <h2>Готов к ограблению? Начни с покупки</h2>
+          <p>Забирай валюту RobRun и вперёд — банки сами себя не ограбят.</p>
+          <a href="shop.html" class="btn btn-gold">Купить валюту</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="logo"><div class="logo-mark">R</div>ROB<span>RUN</span> STORE</a>
+      <p>Продажа игровой валюты RobRun</p>
+      <a href="shop.html" class="btn btn-gold">Купить валюту</a>
+    </div>
+  </footer>
+
+  <script>
+    // ===== НАСТРОЙКИ МАГАЗИНА (меняй здесь) =====
+    const PRICE_PER_UNIT = 70 / 100000;      // 70 ₽ за 100 000 валюты
+    // [от какой суммы, бонус в %] — ПРИМЕР, поставь свои пороги
+    const BONUS_TIERS = [
+      [0, 0],
+      [500000, 5],
+      [1000000, 10],
+      [2500000, 15],
+      [5000000, 25]
+    ];
+
+    const $ = id => document.getElementById(id);
+    const fmt = n => Math.round(n).toLocaleString('ru-RU').replace(/\u00A0/g, ' ');
+    const amountEl = $('amount'), rangeEl = $('range');
+
+    function bonusPercent(v) {
+      let p = 0;
+      for (const [from, pct] of BONUS_TIERS) if (v >= from) p = pct;
+      return p;
+    }
+
+    function render(v) {
+      const pct = bonusPercent(v);
+      const bonus = Math.floor(v * pct / 100);
+      const price = v * PRICE_PER_UNIT;
+      $('price').textContent = (Number.isInteger(price) ? fmt(price) : price.toFixed(2).replace('.', ',')) + ' ₽';
+      $('bonus').textContent = fmt(bonus);
+      $('bonusPct').textContent = pct ? '(' + pct + '%)' : '';
+      $('total').textContent = fmt(v + bonus);
+      document.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', +c.dataset.v === v));
+    }
+
+    function readAmount() {
+      return Math.max(0, parseInt(amountEl.value.replace(/\D/g, ''), 10) || 0);
+    }
+
+    amountEl.addEventListener('input', () => {
+      const v = readAmount();
+      amountEl.value = v ? fmt(v) : '';
+      rangeEl.value = Math.min(Math.max(v, +rangeEl.min), +rangeEl.max);
+      render(v);
+    });
+    rangeEl.addEventListener('input', () => {
+      const v = +rangeEl.value;
+      amountEl.value = fmt(v);
+      render(v);
+    });
+    $('chips').addEventListener('click', e => {
+      const b = e.target.closest('.chip');
+      if (!b) return;
+      const v = +b.dataset.v;
+      amountEl.value = fmt(v); rangeEl.value = v; render(v);
+    });
+    render(readAmount());
+
+    // мобильное меню
+    $('burger').addEventListener('click', () => $('nav').classList.toggle('open'));
+
+    // плавное появление блоков
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('show'); io.unobserve(en.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // счётчик «Успешных сделок»
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const end = +el.dataset.count, suffix = el.dataset.suffix || '';
+      let t0 = null;
+      const step = ts => {
+        if (!t0) t0 = ts;
+        const k = Math.min((ts - t0) / 1200, 1);
+        el.textContent = Math.floor(end * (1 - Math.pow(1 - k, 3))) + (k === 1 ? suffix : '');
+        if (k < 1) requestAnimationFrame(step);
+      };
+      const o = new IntersectionObserver(es => { if (es[0].isIntersecting) { requestAnimationFrame(step); o.disconnect(); } });
+      o.observe(el);
+    });
+  </script>
+</body>
+</html>
