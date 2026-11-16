@@ -48,7 +48,6 @@ export {
   addDoc,
   collection,
   getDocs,
-  serverTimestamp
   updateDoc,
   addDoc,
   collection,
